@@ -19,6 +19,7 @@ LoggedIn.args = {
   user: {
     name: 'Jane Doe',
   },
+
 }
 
 export const LoggedOut = Template.bind({})
