@@ -9,12 +9,20 @@
     "lint": "next lint --dir src",
     "format": "next lint --fix --dir src",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "test": "jest"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.10.1",
     "next": "12.2.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-content-loader": "^6.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.34.2",
+    "swr": "^1.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",
@@ -32,8 +40,11 @@
     "@storybook/manager-webpack5": "^6.5.10",
     "@storybook/react": "^6.1.21",
     "@storybook/testing-library": "^0.0.13",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.3.0",
     "@types/node": "18.7.8",
     "@types/react": "18.0.17",
+    "@types/react-content-loader": "^4.0.0",
     "@types/react-dom": "18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
@@ -47,6 +58,8 @@
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-storybook": "^0.6.4",
+    "jest": "^28.1.3",
+    "jest-environment-jsdom": "^28.1.3",
     "postcss": "^8.4.16",
     "prettier": "^2.7.1",
     "tailwindcss": "^3.1.8",
