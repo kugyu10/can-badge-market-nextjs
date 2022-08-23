@@ -1,5 +1,5 @@
 //商品のカテゴリ
-export type Categpry = 'anime' | 'actor' | 'other'
+export type Category = 'anime' | 'actor' | 'other'
 
 //商品の状態
 export type Condition = 'brand-new' | 'almost-new' | 'used' | 'heavy-used'

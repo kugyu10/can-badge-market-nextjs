@@ -1,4 +1,3 @@
-
 import { ApiContext, User } from 'types'
 import { fetcher } from 'utils'
 
@@ -17,7 +16,7 @@ const signin = async (
   params: SigninParams,
 ): Promise<User> => {
   return await fetcher(
-    `#{context.apiRootUrl.replace(/\/$/g, '')}/auth/signin`,
+    `${context.apiRootUrl.replace(/\/$/g, '')}/auth/signin`,
     {
       method: 'POST',
       headers: {
