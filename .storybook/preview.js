@@ -1,7 +1,4 @@
-import { addDecorator } from "@storybook/react"
-//import { createGlobalStyle, ThemeProvider } from 'styled-components'
-import { theme } from '../src/themes'
-import '../src/styles/globals.css';
+import '../src/styles/globals.css'
 import * as NextImage from 'next/image'
 
 export const parameters = {

@@ -1,12 +1,15 @@
 //ボタンのバリアント
 export type ButtonVariant = 'primary' | 'secondary' | 'danger'
 
-export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+export type ButtonProps = React.ComponentPropsWithRef<'button'> & {
   variant?: ButtonVariant
+  width?: number
+  height?: number
+  disabled?: boolean
+  //onClick?: function
 }
 
 const variants = {
-  //プライマリ
   primary: ['text-white', 'bg-blue-600', 'border-0', 'hover:bg-blue-800'],
   secondary: ['text-white', 'bg-pink-600', 'border-0', 'hover:bg-pink-800'],
   danger: ['text-white', 'bg-red-600', 'border-0', 'hover:bg-red-800'],
@@ -15,20 +18,32 @@ const variants = {
 const Button = (button: ButtonProps) => {
   //ButtonType
   const buttonType = 'button' //FIXME とりあえずbutton固定、submitやreset対応必要
+  let buttonClasses = 'rounded px-4 py-2 m-2 '
 
   //バリアントのスタイルの適用
-  let variantTailwinds = ''
   if (button.variant && variants[button.variant]) {
-    variantTailwinds = variants[button.variant].join(' ')
-    console.log(`variantTailwinds=${variantTailwinds}`) //TODO あとで消す
+    buttonClasses += variants[button.variant].join(' ') + ' '
+  }
+  //Disable
+  if (button.disabled) {
+    buttonClasses += 'text-white bg-gray-600 hover:bg-gray-800 '
   }
 
-  const buttonTailwinds = 'mx-4 my-2'
+  //横幅
+  if (button.width) {
+    buttonClasses += `w-${button.width} `
+  }
+
+  //縦幅
+  if (button.height) {
+    buttonClasses += `h-${button.height} `
+  }
 
   return (
     <button
       type={buttonType}
-      className={`${variantTailwinds} ${buttonTailwinds}`}
+      className={buttonClasses}
+      onClick={button.onClick}
     >
       {button.children}
     </button>
