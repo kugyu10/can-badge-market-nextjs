@@ -13,8 +13,8 @@ const RectLoader = ({ width, height, ...rest }: RectLoaderProps) => (
     width={width}
     height={height}
     viewBox={`0 0 ${width} ${height}`}
-    backgroundColor="gray-50"
-    foregroundColor="gray-100"
+    backgroundColor="#f3f3f3"
+    foregroundColor="#ecebeb"
     {...rest}
   >
     <rect x="0" y="0" rx="0" ry="0" width={width} height={height} />
