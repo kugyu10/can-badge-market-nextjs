@@ -12,8 +12,10 @@ type ScaleImageProps = Omit<ImageProps, 'quality'> & {
 const ScaleImage = (scaleImage: ScaleImageProps) => {
   let containerStyle =
     scaleImage.containerWidth ?? `${scaleImage.width}` ?? 'w-80'
+
   containerStyle +=
     ' ' + (scaleImage.containerHeight ?? `${scaleImage.height}` ?? 'h-80')
+
   const imageAlt = scaleImage.alt ?? 'Product Image'
 
   /** ex)320px */

@@ -3,13 +3,19 @@ interface SeparatorProps {
 }
 
 const Separator = (separator: SeparatorProps) => {
-  let separatorStyle = 'h-5 text-gray-600 bg-gray-100 flex align-center '
+  let separatorStyle = 'h-6 text-gray-400 flex align-center '
 
   if (separator.children) {
     separatorStyle += 'mx-2 '
   }
 
-  return <div className={separatorStyle}>{separator.children}</div>
+  return (
+    <div className="flex">
+      <div className="flex-shrink border-b border-gray-400 w-full mb-3 " />
+      <div className={separatorStyle}>{separator.children}</div>
+      <div className="flex-shrink border-b border-gray-400 w-full mb-3 " />
+    </div>
+  )
 }
 
 export default Separator

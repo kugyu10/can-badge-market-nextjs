@@ -7,15 +7,14 @@ type ShapeImageProps = ImageProps & { shape?: ImageShape }
  * @params shape as 'circle' | 'square'
  */
 const ShapeImage = (props: ShapeImageProps) => {
-  const { shape, ...imageProps } = props
+  const { shape, alt, style, ...imageProps } = props
 
-  //circleなら円形に
-  let shapeImageClasses = ''
+  let imageStyle = style
   if (shape == 'circle') {
-    shapeImageClasses = 'rounded-full '
+    imageStyle = { borderRadius: '50%', ...style }
   }
 
-  return <Image {...imageProps} className={shapeImageClasses} />
+  return <Image {...imageProps} alt={alt ?? 'Image'} style={imageStyle} />
 }
 
 export default ShapeImage
