@@ -18,7 +18,8 @@ const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />
 
 //テキストの入力
 export const Normal = Template.bind({})
+Normal.args = { hasBorder: true }
 
 //赤枠のテキスト
 export const Error = Template.bind({})
-Error.args = { hasError: true }
+Error.args = { hasBorder: true, hasError: true }

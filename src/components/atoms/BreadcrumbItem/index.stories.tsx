@@ -5,4 +5,10 @@ export default {
   title: 'Atoms/BreadcrumbItem',
 } as ComponentMeta<typeof BreadcrumbItem>
 
-export const Breadcrumb = () => <BreadcrumbItem>リストアイテム</BreadcrumbItem>
+export const Breadcrumb = () => (
+  <div>
+    <BreadcrumbItem>Item1</BreadcrumbItem>
+    <BreadcrumbItem>Item2</BreadcrumbItem>
+    <BreadcrumbItem>Item3</BreadcrumbItem>
+  </div>
+)

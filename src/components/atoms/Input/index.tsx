@@ -10,7 +10,7 @@ export type InputProps = React.ComponentPropsWithRef<'input'> & {
 const Input = (input: InputProps) => {
   //TODO hasBorderはデフォルト対応
 
-  let inputClasses = 'p-3 pl-2 w-full h-9 text-base border '
+  let inputClasses = 'p-3 pl-2 w-full h-9 text-base '
 
   if (input.hasBorder) {
     inputClasses += 'border rounded '
