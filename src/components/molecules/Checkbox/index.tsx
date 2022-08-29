@@ -1,6 +1,6 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react'
 import { CheckBoxOutlineBlankIcon, CheckBoxIcon } from '../../atoms/IconButton'
-import Text from '../../atoms/Text'
+/* import Text from '../../atoms/Text' */
 /* import Flex from 'components/layout/Flex' */
 
 export interface CheckBoxProps
@@ -19,9 +19,9 @@ const Label = (props: React.ComponentPropsWithRef<'label'>) => {
   const { children, ...rest } = props
 
   return (
-    <Text className="ml-2 select-none cursor-pointer" {...rest}>
+    <label className="ml-1 select-none cursor-pointer" {...rest}>
       {children}
-    </Text>
+    </label>
   )
 }
 
@@ -51,26 +51,26 @@ const CheckBox = (props: CheckBoxProps) => {
   return (
     <>
       <CheckBoxElement
+        {...rest}
         ref={ref}
         type="checkbox"
         checked={isChecked}
         readOnly={!onChange}
         onChange={onChange}
-        {...rest}
       />
 
-      <div className="items-center">
+      <div className="flex items-center">
         {/* チェックボックスのON/OFFの描画 */}
         {checked ?? isChecked ? (
-          <CheckBoxIcon size={20} onClick={onClick} />
+          <CheckBoxIcon size={5} onClick={onClick} />
         ) : (
-          <CheckBoxOutlineBlankIcon size={20} onClick={onClick} />
+          <CheckBoxOutlineBlankIcon size={5} onClick={onClick} />
         )}
 
         {/* チェックボックスのラベル */}
         {label && label.length > 0 && (
           <Label htmlFor={id} onClick={onClick}>
-            <Text>{label}</Text>
+            {label}
           </Label>
         )}
       </div>
