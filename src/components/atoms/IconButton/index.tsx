@@ -14,6 +14,7 @@ import SvgIcon from '@mui/material/SvgIcon'
 
 export interface IconButtonProps {
   onClick?: React.MouseEventHandler<SVGSVGElement>
+  color?: string
   className?: string
   backgroundColor?: string
   size?: number
