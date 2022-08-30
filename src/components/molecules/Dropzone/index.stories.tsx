@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+import React, { useState, useEffect } from 'react'
 import Dropzone from './index'
 import Button from 'components/atoms/Button'
-import { Container } from '@mui/system'
 //import Box from 'components/layout/Box'
 
 export default {
@@ -71,6 +70,11 @@ const Template: ComponentStory<typeof Dropzone> = (args) => {
 
   const clearImages = () => {
     setFiles([])
+  }
+
+  useEffect(() => {
+    fetchData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -86,7 +90,13 @@ const Template: ComponentStory<typeof Dropzone> = (args) => {
       </div>
       <div className="container">
         {files.map((f, i) => (
-          <img src={URL.createObjectURL(f)} width="100px" key={i} alt="sample" />
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={URL.createObjectURL(f)}
+            width="100px"
+            key={i}
+            alt="sample"
+          />
         ))}
       </div>
     </>
@@ -97,6 +107,12 @@ export const WithControl = Template.bind({})
 WithControl.args = {
   height: 200,
   width: '100%',
-  acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg', 'image/gif', 'image/webp'],
+  acceptedFileTypes: [
+    'image/png',
+    'image/jpeg',
+    'image/jpg',
+    'image/gif',
+    'image/webp',
+  ],
   hasError: false,
 }

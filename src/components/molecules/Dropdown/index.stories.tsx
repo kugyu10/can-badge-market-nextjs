@@ -1,12 +1,12 @@
-import { ComponentMeta } from "@storybook/react";
-
+import { ComponentMeta, ComponentStory } from '@storybook/react'
+import Dropdown from '.'
 
 export default {
   title: 'Molecules/Dropdown',
   argTypes: {
     options: {
-      control: {type: 'array' },
-      description: 'ドロップダウンの選択肢'
+      control: { type: 'array' },
+      description: 'ドロップダウンの選択肢',
       table: {
         type: { summary: 'attay' },
       },
@@ -21,7 +21,7 @@ export default {
     placeholder: {
       control: { type: 'text' },
       description: 'プレースホルダー',
-      table:{
+      table: {
         type: { summary: 'string' },
       },
     },
@@ -74,7 +74,7 @@ InitialValue.args = {
 //初期値を設定
 export const Many = Template.bind({})
 Many.args = {
-  options: Array.from(Array(20), (_v,k) => {
+  options: Array.from(Array(20), (_v, k) => {
     return { value: k.toString(), label: k.toString() }
   }),
   placeholder: 'アイテムを選択してください',
