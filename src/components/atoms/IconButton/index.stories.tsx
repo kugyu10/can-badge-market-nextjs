@@ -1,18 +1,18 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { SearchIcon, CloudUploadIcon, PersonOutlineIcon } from './index'
+import { SearchIcon, CloudUploadIcon, PersonOutlineIcon } from '.'
 
 export default {
   title: 'Atoms/IconButton',
   argTypes: {
     color: {
-      control: { type: 'string' },
+      control: { type: 'text' },
       description: 'アイコン色',
       table: {
-        type: { summary: 'text' },
+        type: { summary: 'string' },
       },
     },
     backgroundColor: {
-      control: { type: 'color' },
+      control: { type: 'text' },
       description: '背景色',
       table: {
         type: { summary: 'string' },
@@ -21,7 +21,7 @@ export default {
     size: {
       control: { type: 'number' },
       defaultValue: 6,
-      description: 'アイコンのサイズ（ size * 4pt）',
+      description: 'アイコンのサイズ（px）',
       table: {
         type: { summary: 'number' },
       },

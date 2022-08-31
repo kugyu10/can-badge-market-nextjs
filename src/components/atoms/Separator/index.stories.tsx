@@ -1,5 +1,5 @@
 import { ComponentMeta } from '@storybook/react'
-import Separator from './index'
+import Separator from '.'
 
 export default { title: 'Atoms/Separator' } as ComponentMeta<typeof Separator>
 

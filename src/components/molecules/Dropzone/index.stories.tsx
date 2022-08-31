@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import React, { useState, useEffect } from 'react'
-import Dropzone from './index'
+import Dropzone from '.'
 import Button from 'components/atoms/Button'
 //import Box from 'components/layout/Box'
 

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Text from 'components/atoms/Text'
-import CheckBox from 'components/molecules/Checkbox'
+import Box from 'components/layout/Box'
+import CheckBox from 'components/molecules/CheckBox'
 
 type Item = {
   label: string
@@ -15,7 +16,9 @@ type FilterGroupProps = {
   onChange?: (values: string[]) => void
 }
 
-/** フィルターグループ */
+/**
+ * フィルターグループ
+ */
 const FilterGroup = ({
   title,
   items,
@@ -25,6 +28,7 @@ const FilterGroup = ({
 }: FilterGroupProps) => {
   const [selected, setSelected] = useState(value ?? defaultValue)
 
+  //QUESTION 一連の意味
   useEffect(() => {
     setSelected(value)
   }, [value])
@@ -47,18 +51,18 @@ const FilterGroup = ({
       <Text fontWeight="bold" variant="mediumLarge">
         {title}
       </Text>
-      <div className="mt-1">
+      <Box>
         {items.map(({ label, name }, i) => (
-          <div key={i} className="mt-1">
+          <Box key={i} tw="mt-1">
             <CheckBox
               name={name}
               label={label}
               checked={!!selected.find((e) => e === name)}
               onChange={handleChange}
             />
-          </div>
+          </Box>
         ))}
-      </div>
+      </Box>
     </>
   )
 }

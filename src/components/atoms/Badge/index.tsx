@@ -1,3 +1,5 @@
+import Flex from 'components/layout/Flex'
+
 interface BadgeProps {
   /** バッジのテキスト */
   content: string
@@ -10,14 +12,14 @@ interface BadgeProps {
 
 /** Atoms/Badge */
 const Badge = ({ content, backgroundColor }: BadgeProps) => {
-  const badgeClasses = `badge inline-flex items-center justify-center h-5 w-5 rounded-full bg-${backgroundColor} `
+  const badgeTw = `badge inline-flex items-center justify-center h-5 w-5 rounded-full bg-${backgroundColor} `
 
-  const contentClasses = 'text-white text-xs select-none '
+  const contentTw = 'text-white text-xs select-none '
 
   return (
-    <div className={badgeClasses}>
-      <p className={contentClasses}>{content}</p>
-    </div>
+    <Flex tw={badgeTw}>
+      <p className={contentTw}>{content}</p>
+    </Flex>
   )
 }
 

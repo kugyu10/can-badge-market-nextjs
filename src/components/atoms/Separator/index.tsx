@@ -1,3 +1,5 @@
+import Flex from 'components/layout/Flex'
+
 interface SeparatorProps {
   children?: React.ReactNode
 }
@@ -10,11 +12,11 @@ const Separator = (separator: SeparatorProps) => {
   }
 
   return (
-    <div className="flex">
+    <Flex>
       <div className="flex-shrink border-b border-gray-400 w-full mb-3 " />
       <div className={separatorStyle}>{separator.children}</div>
       <div className="flex-shrink border-b border-gray-400 w-full mb-3 " />
-    </div>
+    </Flex>
   )
 }
 

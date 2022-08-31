@@ -1,17 +1,24 @@
+import Flex from 'components/layout/Flex'
+
 type SpinnerProps = {
-  size?: number
+  twSize?: number
   strokeWidth?: number
   isAutoCentering?: boolean
 }
 
 /** スピナー */
 const Spinner = (props: SpinnerProps) => {
-  const { size = 50, strokeWidth = 4, isAutoCentering = false } = props
+  const { twSize = 10, strokeWidth = 4, isAutoCentering = false } = props
+  let tw = `animate-spin h-${twSize} w-${twSize} border-${strokeWidth} border-gray-800 rounded-full border-t-transparent `
+
+  if (isAutoCentering) {
+    tw += `mt-${twSize / 2} ml-${twSize / 2} `
+  }
 
   return (
-    <div className="flex justify-center">
-      <div className="animate-spin h-10 w-10 border-4 border-gray-800 rounded-full border-t-transparent"></div>
-    </div>
+    <Flex tw="justify-center">
+      <div className={tw}></div>
+    </Flex>
   )
 }
 

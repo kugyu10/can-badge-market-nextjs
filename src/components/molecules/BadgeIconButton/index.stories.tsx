@@ -16,6 +16,14 @@ export default {
         type: { summary: 'object' },
       },
     },
+    twSize: {
+      control: { type: 'number' },
+      desccription: 'アイコンサイズ',
+      defaultValue: 6,
+      table: {
+        type: { summary: 'number' },
+      },
+    },
     badgeContent: {
       control: { type: 'number' },
       desccription: 'バッジのカウンター',
@@ -39,21 +47,21 @@ const Template: ComponentStory<typeof BadgeIconButton> = (args) => (
 
 export const SearchBadgeIcon = Template.bind({})
 SearchBadgeIcon.args = {
-  icon: <SearchIcon size={24} />,
+  icon: <SearchIcon twSize={6} />,
   badgeContent: 1,
   badgeBackgroundColor: 'yellow-600',
 }
 
 export const PersonBadgeIcon = Template.bind({})
 PersonBadgeIcon.args = {
-  icon: <PersonIcon size={24} />,
-  badgeContent: 1,
+  icon: <PersonIcon twSize={9} />,
+  badgeContent: 2,
   badgeBackgroundColor: 'blue-600',
 }
 
 export const ShoppingCartBadgeIcon = Template.bind({})
 ShoppingCartBadgeIcon.args = {
-  icon: <ShoppingCartIcon size={24} />,
-  badgeContent: 1,
+  icon: <ShoppingCartIcon twSize={12} />,
+  badgeContent: 3,
   badgeBackgroundColor: 'green-600',
 }

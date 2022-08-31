@@ -17,28 +17,42 @@ export interface IconButtonProps {
   color?: string
   className?: string
   backgroundColor?: string
-  size?: number
+  twSize?: number
 }
 
 type IconWrapperProps = React.ComponentPropsWithRef<'div'> & {
-  size: number
+  /** アイコンサイズ(twSize) */
+  twSize: number
+  /** hover時カーソルをpointerにするか？ */
   cursor?: string
+  /** アイコンカラー(red-600など) */
   color?: string
+  /** 背景色(gray-100など) */
   backgroundColor?: string
 }
 
-const IconWrapper = (iconWrapper: IconWrapperProps) => {
-  let iconWrapperStyle = `inline-block w-${iconWrapper.size} h-${iconWrapper.size} `
+const IconWrapper = (props: IconWrapperProps) => {
+  const { twSize, backgroundColor, color, cursor, ...rest } = props
+  let tw = `inline-block w-${twSize} h-${twSize} `
+  const style = { fontSize: twSize * 4 } //TODO Tailwind JIT対応
 
-  if (iconWrapper.backgroundColor) {
-    iconWrapperStyle += `bg-${iconWrapper.backgroundColor} `
+  if (backgroundColor) {
+    tw += `bg-${backgroundColor} `
   }
 
-  if (iconWrapper.color) {
-    iconWrapperStyle += `text-${iconWrapper.color} `
+  if (color) {
+    tw += `text-${color} `
   }
 
-  return <div className={iconWrapperStyle}>{iconWrapper.children}</div>
+  if (cursor) {
+    tw += 'cursor-pointer '
+  }
+
+  return (
+    <div className={tw} style={style} {...rest}>
+      {props.children}
+    </div>
+  )
 }
 
 /** アイコンボタン */
@@ -46,13 +60,14 @@ function IconButton(
   Icon: typeof SvgIcon,
 ): React.ComponentType<IconButtonProps> {
   const IconWithStyle = (props: IconButtonProps) => {
-    const { onClick, className, size = 24, ...rest } = props
+    const { onClick, className, twSize = 6, ...rest } = props
     const cursor = onClick ? 'pointer' : ''
+    const tw = 'block ' + className
 
     return (
-      <IconWrapper cursor={cursor} size={size} {...rest}>
+      <IconWrapper cursor={cursor} twSize={twSize} {...rest}>
         <Icon
-          className={className}
+          className={tw}
           fontSize="inherit"
           color="inherit"
           onClick={onClick}

@@ -1,6 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import React, { useState } from 'react'
-import CheckBox from './index'
+import CheckBox from '.'
 
 export default {
   title: 'Molecules/CheckBox',

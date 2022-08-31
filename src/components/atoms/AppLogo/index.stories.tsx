@@ -1,5 +1,5 @@
 import { ComponentMeta } from '@storybook/react'
-import AppLogo from './index'
+import AppLogo from '.'
 
 export default {
   title: 'Atoms/AppLogo',
