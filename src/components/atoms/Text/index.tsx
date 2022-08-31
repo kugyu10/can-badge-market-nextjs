@@ -27,36 +27,41 @@ const variants = {
   extraLarge: ['text-3xl'],
 }
 
-const Text = (text: TextProps) => {
-  let textClasses = 'm-2 p-2 font-sans ' //デフォルト、テキトー
+const Text = (props: TextProps) => {
+  const { children, ...rest } = props
+  let tw = 'm-1 p-1 font-sans ' //デフォルト、テキトー
 
-  if (text.variant && variants[text.variant]) {
-    textClasses += variants[text.variant].join(' ') + ' '
-  }
-
-  if (text.fontWeight) {
-    textClasses += `font-${text.fontWeight} `
+  if (props.variant && variants[props.variant]) {
+    tw += variants[props.variant].join(' ') + ' '
   }
 
-  if (text.lineHeight) {
-    textClasses += `leading-${text.lineHeight} `
+  if (props.fontWeight) {
+    tw += `font-${props.fontWeight} `
   }
 
-  if (text.color) {
-    textClasses += `text-${text.color} `
+  if (props.lineHeight) {
+    tw += `leading-${props.lineHeight} `
   }
 
-  if (text.backgroundColor) {
-    textClasses += `bg-${text.backgroundColor} `
-  }
-  if (text.margin) {
-    textClasses += `${text.margin} `
-  }
-  if (text.padding) {
-    textClasses += `${text.padding} `
+  if (props.color) {
+    tw += `text-${props.color} `
   }
 
-  return <span className={textClasses}>{text.children}</span>
+  if (props.backgroundColor) {
+    tw += `bg-${props.backgroundColor} `
+  }
+  if (props.margin) {
+    tw += `${props.margin} `
+  }
+  if (props.padding) {
+    tw += `${props.padding} `
+  }
+
+  return (
+    <span className={tw} {...rest}>
+      {children}
+    </span>
+  )
 }
 
 export default Text

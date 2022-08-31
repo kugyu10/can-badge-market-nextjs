@@ -1,8 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  mode: 'jit',
+  purge: ['./src/**/*.{js,ts,jsx,tsx}'],
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx}", //追加
-    "./src/components/**/*.{js,ts,jsx,tsx}", //追加
+    './src/pages/**/*.{js,ts,jsx,tsx}',
+    './src/components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {},

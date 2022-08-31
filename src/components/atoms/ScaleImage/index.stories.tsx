@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import ScaleImage from './index'
+import ScaleImage from '.'
 
 export default {
   title: 'Atoms/ScaleImage',

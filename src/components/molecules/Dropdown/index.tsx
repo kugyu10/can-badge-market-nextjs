@@ -1,36 +1,46 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react'
 import Text from 'components/atoms/Text'
-//import Flex 'components/layout/Flex'
+import Flex from 'components/layout/Flex'
 
 const DropdownRoot = (props: React.ComponentPropsWithRef<'div'>) => {
-  return <div className="relative h-10">{props.children}</div>
+  const { children, ...rest } = props
+  return (
+    <div className="relative h-10" {...rest}>
+      {children}
+    </div>
+  )
 }
 
 //ドロップダウン外観
 const DropdownControl = (
   props: React.ComponentPropsWithRef<'div'> & { hasError?: boolean },
 ) => {
-  const { children, hasError } = props
+  const { children, hasError, ...rest } = props
 
-  let style =
-    'relative overflow-hidden bg-white rounded-md box-border cursor-default px-2 pt-12 pb-3 '
+  let tw =
+    'relative overflow-hidden bg-green-50 rounded-md box-border cursor-default px-2 pb-12 pt-3 border-gray-200 '
   if (hasError) {
-    style += 'border-red-600 '
+    tw += 'border-red-600 '
   }
-  return <div className={style}>{children}</div>
+  return (
+    <div className={tw} {...rest}>
+      {children}
+    </div>
+  )
 }
 
+//ドロップダウン値
 const DropdownValue = (props: React.ComponentPropsWithRef<'div'>) => {
   return <div className="text-gray-700">{props.children}</div>
 }
 
 //ドロップダウンプレースホルダー
 const DropdownPlaceholder = (props: React.ComponentPropsWithRef<'div'>) => {
-  const style = 'text-gray-500 text-sm leading-5 '
-  const css = { minHeight: '20px' }
+  const tw = 'text-gray-500 text-sm leading-5 '
+  const style = { minHeight: '20px' }
 
   return (
-    <div className={style} style={css}>
+    <div className={tw} style={style}>
       {props.children}
     </div>
   )
@@ -40,29 +50,39 @@ const DropdownPlaceholder = (props: React.ComponentPropsWithRef<'div'>) => {
 const DropdownArrow = (
   props: React.ComponentPropsWithRef<'div'> & { isOpen?: boolean },
 ) => {
-  let style = 'block h-0 mt-1 absolute r-2 t-4 w-0 '
+  const { children, ...rest } = props
+  let tw = 'absolute block h-4 mt-1 r-2 t-4 w-4 '
   if (props.isOpen) {
-    style += 'border-gray-200 border-l-0 border-x-4 border-r-4 '
+    tw += 'before:border-gray-200 before:content("▼") '
   } else {
-    style += 'border-gray-200 border-l-4 border-x-4 border-r-0 '
+    tw += 'before:border-gray-200 before:content("▲") '
   }
 
-  return <div className={style}>{props.children}</div>
+  return (
+    <div className={tw} {...rest}>
+      {children}
+    </div>
+  )
 }
 
 //ドロップメニュー
 const DropdownMenu = (props: React.ComponentPropsWithRef<'div'>) => {
-  const style =
+  const tw =
     'bg-white border-gray-700 drop-shadow-md box-border rounded-md max-h-50 overflow-y-auto absolute top-full w-full z-50 '
 
-  return <div className={style}>{props.children}</div>
+  return <div className={tw}>{props.children}</div>
 }
 
 //ドロップメニューの選択肢
 const DropdownOption = (props: React.ComponentPropsWithRef<'div'>) => {
-  const style = 'px-2 py-3 hover:bg-gray-500 '
+  const { children, ...rest } = props
+  const tw = 'px-2 py-3 hover:bg-gray-500 '
 
-  return <div className={style}>{props.children}</div>
+  return (
+    <div className={tw} {...rest}>
+      {children}
+    </div>
+  )
 }
 
 interface DropdownItemProps {
@@ -71,14 +91,14 @@ interface DropdownItemProps {
 
 /** ドロップダウンの選択した要素 */
 const DropdownItem = (props: DropdownItemProps) => {
-  const { item } = props
+  const { item, ...rest } = props
 
   return (
-    <div className="flex items-center">
+    <Flex tw="items-center" {...rest}>
       <Text margin="m-0" variant="small">
         {item.label ?? item.value}
       </Text>
-    </div>
+    </Flex>
   )
 }
 
@@ -169,6 +189,7 @@ const Dropdown = (props: DropdownProps) => {
         hasError={hasError}
         onMouseDown={handleMouseDown}
         onTouchEnd={handleMouseDown}
+        data-testid="dropdown-control"
       >
         {selectedItem && (
           <DropdownValue>
@@ -196,6 +217,7 @@ const Dropdown = (props: DropdownProps) => {
               key={idx}
               onMouseDown={(e) => handleSelectValue(e, item)}
               onClick={(e) => handleSelectValue(e, item)}
+              data-testid="dropdown-option"
             >
               <DropdownItem item={item} />
             </DropdownOption>

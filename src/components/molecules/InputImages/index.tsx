@@ -1,10 +1,13 @@
 import React, { useCallback, useMemo } from 'react'
+import Flex, { FlexProps } from 'components/layout/Flex'
 import Dropzone from 'components/molecules/Dropzone'
 import ImagePreview from 'components/molecules/ImagePreview'
 
-const InputImagesContainer = (props: React.ComponentPropsWithRef<'div'>) => {
-  const tw = 'flex mt-2 first:mt-0 '
-  return <div className={tw}>{props.children}</div>
+const InputImagesContainer = (
+  props: React.ComponentPropsWithRef<'div'> & FlexProps,
+) => {
+  const tw = 'mt-2 first:mt-0 ' + props.tw ?? ''
+  return <Flex tw={tw}>{props.children}</Flex>
 }
 
 export type FileData = {
@@ -89,7 +92,7 @@ const InputImages = (props: InputImagesProps) => {
   )
 
   return (
-    <InputImagesContainer className="flex flex-col">
+    <InputImagesContainer className="flex-col">
       {images &&
         images.map((img, index) => {
           return (

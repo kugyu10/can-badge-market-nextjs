@@ -1,7 +1,6 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react'
 import { CheckBoxOutlineBlankIcon, CheckBoxIcon } from '../../atoms/IconButton'
-/* import Text from '../../atoms/Text' */
-/* import Flex from 'components/layout/Flex' */
+import Flex from 'components/layout/Flex'
 
 export interface CheckBoxProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'defaultValue'> {
@@ -34,7 +33,6 @@ const CheckBox = (props: CheckBoxProps) => {
   const onClick = useCallback(
     (e: React.MouseEvent) => {
       e.preventDefault()
-
       //チェックボックスを強制的にクリック
       //QUESTION もうわからん
       ref.current?.click()
@@ -59,12 +57,12 @@ const CheckBox = (props: CheckBoxProps) => {
         onChange={onChange}
       />
 
-      <div className="flex items-center">
+      <Flex tw="items-center">
         {/* チェックボックスのON/OFFの描画 */}
         {checked ?? isChecked ? (
-          <CheckBoxIcon size={5} onClick={onClick} />
+          <CheckBoxIcon twSize={5} onClick={onClick} />
         ) : (
-          <CheckBoxOutlineBlankIcon size={5} onClick={onClick} />
+          <CheckBoxOutlineBlankIcon twSize={5} onClick={onClick} />
         )}
 
         {/* チェックボックスのラベル */}
@@ -73,7 +71,7 @@ const CheckBox = (props: CheckBoxProps) => {
             {label}
           </Label>
         )}
-      </div>
+      </Flex>
     </>
   )
 }

@@ -14,6 +14,7 @@ export default {
     hasError: {
       control: { type: 'boolean' },
       defaultValue: false,
+      description: 'バリデーションエラーフラグ',
       table: {
         type: { summary: 'string' },
       },

@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import Spinner from './index'
+import Spinner from '.'
+import Flex from 'components/layout/Flex'
 
 export default {
   title: 'Atoms/Spinner',
@@ -32,9 +33,9 @@ export default {
 } as ComponentMeta<typeof Spinner>
 
 const Template: ComponentStory<typeof Spinner> = (args) => (
-  <div className="fixed inset-0 flex justify-center items-center z-50">
+  <Flex tw="fixed inset-0 justify-center items-center z-50 ">
     <Spinner {...args} />
-  </div>
+  </Flex>
 )
 
 export const Normal = Template.bind({})

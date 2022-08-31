@@ -1,6 +1,7 @@
 import React from 'react'
 import { CloseIcon } from 'components/atoms/IconButton'
-import { Text } from 'components/atoms/Text'
+import Text, { TextProps } from 'components/atoms/Text'
+import Flex from 'components/layout/Flex'
 
 const ImagePreviewContainer = (props: React.ComponentPropsWithRef<'div'>) => (
   <div className="relative">{props.children}</div>
@@ -8,15 +9,15 @@ const ImagePreviewContainer = (props: React.ComponentPropsWithRef<'div'>) => (
 
 //閉じるボタンのラップ
 const Closebox = (props: React.ComponentPropsWithRef<'div'>) => {
-  const style =
-    'flex absolute top-0 right-0 w-7 h-7 rounded-md bg-gray-700 cursor-pointer '
-  return <div className={style}>{props.children}</div>
+  const tw =
+    'absolute top-0 right-0 w-7 h-7 rounded-md bg-gray-700 cursor-pointer '
+  return <Flex tw={tw}>{props.children}</Flex>
 }
 
 //画像タイトル
-const ImageTitle = (props: React.ComponentPropsWithRef<Text>) => {
-  const style = 'absolute t-3 rounded-md bg-red-400 box-border px-1 '
-  return <Text className={style}>{props.children}</Text>
+const ImageTitle = (props: React.ComponentPropsWithRef<'span'> & TextProps) => {
+  const tw = 'absolute t-3 rounded-md bg-red-400 box-border px-1 '
+  return <Text className={tw}>{props.children}</Text>
 }
 
 interface ImagePreviewProps {
@@ -55,13 +56,14 @@ const ImagePreview = ({
 
   return (
     <ImagePreviewContainer>
+      <ImageTitle>ImageTitle</ImageTitle>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={src} alt={alt} height={height} width={width} />
       <Closebox
         className="items-center justify-center "
         onClick={handleCloseClick}
       >
-        <CloseIcon size={24} color="white" />
+        <CloseIcon twSize={6} color="white" />
       </Closebox>
     </ImagePreviewContainer>
   )

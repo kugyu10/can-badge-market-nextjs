@@ -1,6 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import React, { useState, useEffect } from 'react'
-import ImagePreview from './'
+import ImagePreview from '.'
+import Grid from 'components/layout/Grid'
 import Dropzone from 'components/molecules/Dropzone'
 
 export default {
@@ -44,8 +45,8 @@ export default {
 } as ComponentMeta<typeof ImagePreview>
 
 const Container = (props: React.ComponentPropsWithRef<'div'>) => {
-  const style = 'w-72 gap-2 grid grid-cols-1'
-  return <div className={style}>{props.children}</div>
+  const tw = 'w-72 gap-2 grid-cols-1'
+  return <Grid tw={tw}>{props.children}</Grid>
 }
 
 interface Image {
@@ -72,7 +73,7 @@ const Template: ComponentStory<typeof ImagePreview> = (args) => {
       }
     }
     setImages(newImages)
-    // eslint-disable-next-line prettier/prettier
+    // eslint-disable-next-line prettier/prettier, react-hooks/exhaustive-deps
   }, [files])
 
   //閉じるボタンが押されたら、画像を削除

@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import Badge from './index'
+import Badge from '.'
 
 export default {
   title: 'Atoms/Badge',

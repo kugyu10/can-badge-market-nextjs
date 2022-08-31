@@ -1,5 +1,6 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react'
 import { CloudUploadIcon } from 'components/atoms/IconButton'
+import Flex from 'components/layout/Flex'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const isDragEvt = (value: any): value is React.DragEvent => {
@@ -105,16 +106,16 @@ const DropzoneContent = (
   props: React.ComponentPropsWithRef<'div'> & DropzoneContentProps,
 ) => {
   const { width, height, children, ...rest } = props
-  const style = 'flex flex-col items-center justify-center '
-  const css = {
+  const tw = 'flex-col items-center justify-center '
+  const style = {
     width: typeof width === 'number' ? `${width}px` : width,
     height: typeof height === 'number' ? `${height}px` : height,
   }
 
   return (
-    <div className={style} style={css} {...rest}>
+    <Flex tw={tw} style={style} {...rest}>
       {children}
-    </div>
+    </Flex>
   )
 }
 

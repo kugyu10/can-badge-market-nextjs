@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import ShapeImage from './index'
+import ShapeImage from '.'
 
 export default {
   title: 'Atoms/ShapeImage',

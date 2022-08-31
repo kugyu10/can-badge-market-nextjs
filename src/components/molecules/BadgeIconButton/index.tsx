@@ -1,9 +1,9 @@
 import Badge from 'components/atoms/Badge'
 
 const BadgeIconButtonWrapper = (
-  props: React.ComponentPropsWithRef<'span'> & { size: number | string },
+  props: React.ComponentPropsWithRef<'span'> & { twSize: number },
 ) => {
-  const tw = `relative flex items-center h-${props.size} w-${props.size}`
+  const tw = `relative flex items-center h-${props.twSize} w-${props.twSize} `
   return <span className={tw}>{props.children}</span>
 }
 
@@ -16,18 +16,18 @@ type BadgeIconButton = {
   icon: React.ReactNode
   badgeContent?: number
   badgeBackgroundColor: string
-  size?: number | string
+  twSize?: number
 }
 
 /** バッジ付きアイコンボタン */
 const BadgeIconButton = ({
   icon,
-  size = '24px',
+  twSize = 6,
   badgeContent,
   badgeBackgroundColor,
 }: BadgeIconButton) => {
   return (
-    <BadgeIconButtonWrapper size={size}>
+    <BadgeIconButtonWrapper twSize={twSize}>
       {icon}
       {badgeContent && (
         <BadgeWrapper data-testid="badge-wrapper">

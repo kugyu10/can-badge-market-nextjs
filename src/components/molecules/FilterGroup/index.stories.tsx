@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { useState } from 'react'
-import FilterGroup from '.'
+import FilterGroup from './index'
 
 export default {
   title: 'Molecules/FilterGroup',
@@ -42,8 +42,8 @@ export const Standard = Template.bind({})
 Standard.args = {
   title: 'All categories',
   items: [
-    { label: 'anime', name: 'anime' },
-    { label: 'actor', name: 'actor' },
-    { label: 'other', name: 'other' },
+    { label: 'Anime', name: 'anime' },
+    { label: 'Actor', name: 'actor' },
+    { label: 'Other', name: 'other' },
   ],
 }

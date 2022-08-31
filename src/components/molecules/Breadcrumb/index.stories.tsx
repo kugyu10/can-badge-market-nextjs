@@ -1,6 +1,6 @@
 import { ComponentMeta } from '@storybook/react'
-import BreadcrumbItem from 'components/atoms/BreadcrumbItem'
 import Breadcrumb from '.'
+import BreadcrumbItem from 'components/atoms/BreadcrumbItem'
 
 export default { title: 'Molecules/Breadcrumb' } as ComponentMeta<
   typeof Breadcrumb
@@ -9,10 +9,14 @@ export default { title: 'Molecules/Breadcrumb' } as ComponentMeta<
 export const Standard = () => (
   <Breadcrumb>
     <BreadcrumbItem>
-      <a href="#">Top</a>
+      <a href="#" className="text-gray-600 hover:underline">
+        Top
+      </a>
     </BreadcrumbItem>
     <BreadcrumbItem>
-      <a href="#">anime</a>
+      <a href="#" className="text-gray-600 hover:underline">
+        anime
+      </a>
     </BreadcrumbItem>
     <BreadcrumbItem>Item</BreadcrumbItem>
   </Breadcrumb>
