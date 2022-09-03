@@ -1,5 +1,10 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react'
-import { CheckBoxOutlineBlankIcon, CheckBoxIcon } from '../../atoms/IconButton'
+import styled from 'styled-components'
+import {
+  CheckBoxOutlineBlankIcon,
+  CheckBoxIcon,
+} from 'components/atoms/IconButton'
+import Text from 'components/atoms/Text'
 import Flex from 'components/layout/Flex'
 
 export interface CheckBoxProps
@@ -8,17 +13,25 @@ export interface CheckBoxProps
   label?: string
 }
 
-//非表示のチェックボックス
-const CheckBoxElement = (props: React.ComponentPropsWithRef<'input'>) => {
+const CheckBoxElement = styled.input`
+  display: none;
+`
+
+//こちらに置き換えるとrefが効いてないのかonChangeイベントが発生しない
+const CheckBoxElement2 = (props: React.ComponentPropsWithRef<'input'>) => {
   return <input className="hidden" {...props} />
 }
 
-//チェックボックスのラベル
+//const Label = styled.label`
+//  cursor: pointer;
+//  margin-left: 6px;
+//  user-select: none;
+//`
+
 const Label = (props: React.ComponentPropsWithRef<'label'>) => {
   const { children, ...rest } = props
-
   return (
-    <label className="cursor-pointer select-none ml-1 " {...rest}>
+    <label className="cursor-pointer ml-1.5 select-none" {...rest}>
       {children}
     </label>
   )
@@ -28,13 +41,11 @@ const Label = (props: React.ComponentPropsWithRef<'label'>) => {
 const CheckBox = (props: CheckBoxProps) => {
   const { id, label, onChange, checked, ...rest } = props
   const [isChecked, setIsChecked] = useState(checked)
-
   const ref = useRef<HTMLInputElement>(null)
   const onClick = useCallback(
     (e: React.MouseEvent) => {
       e.preventDefault()
-      //チェックボックスを強制的にクリック
-      //QUESTION もうわからん
+      // チェックボックスを強制的にクリック
       ref.current?.click()
       setIsChecked((isChecked) => !isChecked)
     },
@@ -56,19 +67,17 @@ const CheckBox = (props: CheckBoxProps) => {
         readOnly={!onChange}
         onChange={onChange}
       />
-
-      <Flex tw="items-center">
+      <Flex tw="center">
         {/* チェックボックスのON/OFFの描画 */}
         {checked ?? isChecked ? (
           <CheckBoxIcon twSize={5} onClick={onClick} />
         ) : (
           <CheckBoxOutlineBlankIcon twSize={5} onClick={onClick} />
         )}
-
         {/* チェックボックスのラベル */}
         {label && label.length > 0 && (
           <Label htmlFor={id} onClick={onClick}>
-            {label}
+            <Text>{label}</Text>
           </Label>
         )}
       </Flex>
