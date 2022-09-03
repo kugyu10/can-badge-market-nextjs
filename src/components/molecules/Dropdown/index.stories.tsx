@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import Dropdown from '.'
+import Dropdown from './index'
 
 export default {
   title: 'Molecules/Dropdown',

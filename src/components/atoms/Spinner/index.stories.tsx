@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import Spinner from '.'
+import Spinner from './index'
 import Flex from 'components/layout/Flex'
 
 export default {

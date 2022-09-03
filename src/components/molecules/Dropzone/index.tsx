@@ -241,7 +241,7 @@ const Dropzone = (props: DropzoneProps) => {
           multiple
         />
         <DropzoneContent width={width} height={height}>
-          <CloudUploadIcon size={24} />
+          <CloudUploadIcon twSize={6} />
           <span style={{ textAlign: 'center' }}>
             デバイスからのアップロード
           </span>
