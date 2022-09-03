@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { SearchIcon, CloudUploadIcon, PersonOutlineIcon } from '.'
+import { SearchIcon, CloudUploadIcon, PersonOutlineIcon } from './index'
 
 export default {
   title: 'Atoms/IconButton',

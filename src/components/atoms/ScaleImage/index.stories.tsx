@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import ScaleImage from '.'
+import ScaleImage from './index'
 
 export default {
   title: 'Atoms/ScaleImage',
@@ -56,6 +56,6 @@ Normal.args = { src: '/images/sample/1.jpg' }
 export const Small = Template.bind({})
 Small.args = {
   src: '/images/sample/1.jpg',
-  containerWidth: 'w-24',
-  containerHeight: 'h-24',
+  twContainerWidth: 'w-24',
+  twContainerHeight: 'h-24',
 }

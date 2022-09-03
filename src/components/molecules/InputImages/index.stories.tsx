@@ -1,6 +1,6 @@
 import { ComponentMeta } from '@storybook/react'
 import React, { useState } from 'react'
-import InputImages, { FileData } from '.'
+import InputImages, { FileData } from './index'
 import Grid from 'components/layout/Grid'
 
 export default { title: 'Molecules/InputImages' } as ComponentMeta<

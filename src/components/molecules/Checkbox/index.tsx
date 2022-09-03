@@ -18,7 +18,7 @@ const Label = (props: React.ComponentPropsWithRef<'label'>) => {
   const { children, ...rest } = props
 
   return (
-    <label className="ml-1 select-none cursor-pointer" {...rest}>
+    <label className="cursor-pointer select-none ml-1 " {...rest}>
       {children}
     </label>
   )
