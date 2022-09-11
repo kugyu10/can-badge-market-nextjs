@@ -1,4 +1,11 @@
-import React, { useRef, useState, useCallback, useEffect } from 'react'
+import React, {
+  useRef,
+  useState,
+  useCallback,
+  useEffect,
+  PropsWithRef,
+  ForwardRefExoticComponent,
+} from 'react'
 import styled from 'styled-components'
 import {
   CheckBoxOutlineBlankIcon,
@@ -6,6 +13,8 @@ import {
 } from 'components/atoms/IconButton'
 import Text from 'components/atoms/Text'
 import Flex from 'components/layout/Flex'
+export type ElementFrec<T extends keyof JSX.IntrinsicElements> =
+  ForwardRefExoticComponent<PropsWithRef<JSX.IntrinsicElements[T]>>
 
 export interface CheckBoxProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'defaultValue'> {
@@ -13,14 +22,14 @@ export interface CheckBoxProps
   label?: string
 }
 
-const CheckBoxElement = styled.input`
-  display: none;
-`
-
-//こちらに置き換えるとrefが効いてないのかonChangeイベントが発生しない
-const CheckBoxElement2 = (props: React.ComponentPropsWithRef<'input'>) => {
-  return <input className="hidden" {...props} />
-}
+// 非表示のチェックボックス要素
+const inputTag = 'input'
+// eslint-disable-next-line react/display-name
+const CheckBoxElement: ElementFrec<typeof inputTag> = React.forwardRef(
+  (props: React.ComponentPropsWithRef<'input'>, ref) => {
+    return <input ref={ref} className="hidden" {...props} />
+  },
+)
 
 //const Label = styled.label`
 //  cursor: pointer;

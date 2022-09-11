@@ -1,8 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react/jsx-key */
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import React, { useState, useEffect } from 'react'
 import Dropzone from '.'
 import Button from 'components/atoms/Button'
-//import Box from 'components/layout/Box'
+import Box from 'components/layout/Box'
+import Flex from 'components/layout/Flex'
 
 export default {
   title: 'Molecules/Dropzone',
@@ -88,17 +91,18 @@ const Template: ComponentStory<typeof Dropzone> = (args) => {
       <div className="container">
         <Button onClick={clearImages}>全ての画像をクリア</Button>
       </div>
-      <div className="container">
+      <Flex>
         {files.map((f, i) => (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={URL.createObjectURL(f)}
-            width="100px"
-            key={i}
-            alt="sample"
-          />
+          <div className="container">
+            <img
+              src={URL.createObjectURL(f)}
+              width="100px"
+              key={i}
+              alt="sample"
+            />
+          </div>
         ))}
-      </div>
+      </Flex>
     </>
   )
 }

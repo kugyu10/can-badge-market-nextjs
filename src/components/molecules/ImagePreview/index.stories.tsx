@@ -97,6 +97,7 @@ const Template: ComponentStory<typeof ImagePreview> = (args) => {
           src={image.src}
           {...args}
           onRemove={handleRemove}
+          width="96px"
         />
       ))}
     </Container>

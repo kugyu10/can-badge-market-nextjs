@@ -1,6 +1,16 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react'
+import React, {
+  useState,
+  useRef,
+  useCallback,
+  useEffect,
+  PropsWithRef,
+  ForwardRefExoticComponent,
+} from 'react'
+import styled from 'styled-components'
 import { CloudUploadIcon } from 'components/atoms/IconButton'
 import Flex from 'components/layout/Flex'
+export type ElementFrec<T extends keyof JSX.IntrinsicElements> =
+  ForwardRefExoticComponent<PropsWithRef<JSX.IntrinsicElements[T]>>
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const isDragEvt = (value: any): value is React.DragEvent => {
@@ -70,31 +80,42 @@ type DropzoneRootProps = {
 }
 
 //ドロップゾーンの外側の外観
-const DropzoneRoot = (
-  props: React.ComponentPropsWithRef<'div'> & DropzoneRootProps,
-) => {
-  const { hasError, isFocused, width, height, children } = props
-  let style = 'border-dashed rounded-lg cursor-pointer '
+// const divTag = 'div'
+// // eslint-disable-next-line react/display-name
+// const DropzoneRoot: ElementFrec<typeof divTag> = React.forwardRef(
+//   (props: React.ComponentPropsWithRef<'div'> & DropzoneRootProps, ref) => {
+//     const { hasError, isFocused, width, height, children } = props
 
-  if (hasError) {
-    style += 'border-red-600 '
-  } else if (isFocused) {
-    style += 'border-gray-900 '
-  } else {
-    style += 'border-gray-500 '
-  }
+//     let style = 'border-dashed rounded-lg cursor-pointer '
 
-  const css = {
-    width: typeof width === 'number' ? `${width}px` : width,
-    height: typeof height === 'number' ? `${height}px` : height,
-  }
+//     if (hasError) {
+//       style += 'border-red-600 '
+//     } else if (isFocused) {
+//       style += 'border-gray-900 '
+//     } else {
+//       style += 'border-gray-500 '
+//     }
 
-  return (
-    <div className={style} style={css}>
-      {children}
-    </div>
-  )
-}
+//     const css = {
+//       width: typeof width === 'number' ? `${width}px` : width,
+//       height: typeof height === 'number' ? `${height}px` : height,
+//     }
+
+//     return (
+//       <div ref={ref} className={style} style={css}>
+//         {children}
+//       </div>
+//     )
+//   },
+// )
+const DropzoneRoot = styled.div<DropzoneRootProps>`
+  border: 1px dashed gray;
+  border-radius: 8px;
+  cursor: pointer;
+  width: ${({ width }) => (typeof width === 'number' ? `${width}px` : width)};
+  height: ${({ height }) =>
+    typeof height === 'number' ? `${height}px` : height};
+`
 
 type DropzoneContentProps = {
   width: string | number
@@ -119,9 +140,13 @@ const DropzoneContent = (
   )
 }
 
-const DropzoneInputFile = (props: React.ComponentPropsWithRef<'input'>) => {
-  return <input className="hidden" {...props} />
-}
+const inputTag = 'input'
+// eslint-disable-next-line react/display-name
+const DropzoneInputFile: ElementFrec<typeof inputTag> = React.forwardRef(
+  (props: React.ComponentPropsWithRef<'input'>, ref) => {
+    return <input ref={ref} className="hidden" {...props} />
+  },
+)
 
 /** ドロップゾーン
  * ファイルの入力を受け付ける

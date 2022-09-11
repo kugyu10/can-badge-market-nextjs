@@ -6,7 +6,7 @@ import ImagePreview from 'components/molecules/ImagePreview'
 const InputImagesContainer = (
   props: React.ComponentPropsWithRef<'div'> & FlexProps,
 ) => {
-  const tw = 'mt-2 first:mt-0 ' + props.tw ?? ''
+  const tw = 'flex-col mt-2 first:mt-0 ' + props.tw ?? ''
   return <Flex tw={tw}>{props.children}</Flex>
 }
 
@@ -92,7 +92,7 @@ const InputImages = (props: InputImagesProps) => {
   )
 
   return (
-    <InputImagesContainer className="flex-col">
+    <InputImagesContainer>
       {images &&
         images.map((img, index) => {
           return (
