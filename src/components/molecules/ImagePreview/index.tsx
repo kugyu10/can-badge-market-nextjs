@@ -3,15 +3,25 @@ import { CloseIcon } from 'components/atoms/IconButton'
 import Text, { TextProps } from 'components/atoms/Text'
 import Flex from 'components/layout/Flex'
 
-const ImagePreviewContainer = (props: React.ComponentPropsWithRef<'div'>) => (
-  <div className="relative">{props.children}</div>
-)
+const ImagePreviewContainer = (props: React.ComponentPropsWithRef<'div'>) => {
+  const { children, ...rest } = props
+  return (
+    <div className="relative inline-block w-fit " {...rest}>
+      {children}
+    </div>
+  )
+}
 
 //閉じるボタンのラップ
 const Closebox = (props: React.ComponentPropsWithRef<'div'>) => {
+  const { children, ...rest } = props
   const tw =
-    'absolute top-0 right-0 w-7 h-7 rounded-md bg-gray-700 cursor-pointer '
-  return <Flex tw={tw}>{props.children}</Flex>
+    'absolute items-center justify-center top-0 right-0 w-6 h-6 rounded-md bg-gray-700 cursor-pointer '
+  return (
+    <Flex tw={tw} {...rest}>
+      {children}
+    </Flex>
+  )
 }
 
 //画像タイトル
@@ -54,15 +64,12 @@ const ImagePreview = ({
     return false
   }
 
+  //TODO heightのエラー？
   return (
-    <ImagePreviewContainer>
-      <ImageTitle>ImageTitle</ImageTitle>
+    <ImagePreviewContainer height={height} width={width}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={src} alt={alt} height={height} width={width} />
-      <Closebox
-        className="items-center justify-center "
-        onClick={handleCloseClick}
-      >
+      <Closebox onClick={handleCloseClick}>
         <CloseIcon twSize={6} color="white" />
       </Closebox>
     </ImagePreviewContainer>

@@ -1,15 +1,32 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react'
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  useCallback,
+  ForwardRefExoticComponent,
+  PropsWithRef,
+} from 'react'
+import styled from 'styled-components'
 import Text from 'components/atoms/Text'
 import Flex from 'components/layout/Flex'
+export type ElementFrec<T extends keyof JSX.IntrinsicElements> =
+  ForwardRefExoticComponent<PropsWithRef<JSX.IntrinsicElements[T]>>
 
-const DropdownRoot = (props: React.ComponentPropsWithRef<'div'>) => {
-  const { children, ...rest } = props
-  return (
-    <div className="relative h-10" {...rest}>
-      {children}
-    </div>
-  )
-}
+//TODO ESLint問題解決
+//ドロップゾーンルート
+const divTag = 'div'
+// eslint-disable-next-line react/display-name
+const DropdownRoot: ElementFrec<typeof divTag> = React.forwardRef(
+  (props, ref) => {
+    // eslint-disable-next-line react/prop-types
+    const { children, ...rest } = props
+    return (
+      <div ref={ref} className="relative h-10" {...rest}>
+        {children}
+      </div>
+    )
+  },
+)
 
 //ドロップダウン外観
 const DropdownControl = (
@@ -18,9 +35,11 @@ const DropdownControl = (
   const { children, hasError, ...rest } = props
 
   let tw =
-    'relative overflow-hidden bg-green-50 rounded-md box-border cursor-default px-2 pb-12 pt-3 border-gray-200 '
+    'relative overflow-hidden rounded-md cursor-default py-2 pr-12 pl-3 box-border border '
   if (hasError) {
-    tw += 'border-red-600 '
+    tw += 'border-red-700 '
+  } else {
+    tw += 'border-gray-200 '
   }
   return (
     <div className={tw} {...rest}>
@@ -46,21 +65,31 @@ const DropdownPlaceholder = (props: React.ComponentPropsWithRef<'div'>) => {
   )
 }
 
+// ドロップダウンの矢印の外観  //TODO close color&width
+// const DropdownArrow = styled.div<{ isOpen?: boolean }>`
+//   border-color: 'transparent transparent #222222';
+//   border-width: '0 5px 5px';
+//   border-style: solid;
+//   content: ' ';
+//   display: block;
+//   height: 0;
+//   margin-top: -ceil(2.5);
+//   position: absolute;
+//   right: 10px;
+//   top: 16px;
+//   width: 0;
+// `
+
 //ドロップダウンの矢印の外観
 const DropdownArrow = (
   props: React.ComponentPropsWithRef<'div'> & { isOpen?: boolean },
 ) => {
-  const { children, ...rest } = props
-  let tw = 'absolute block h-4 mt-1 r-2 t-4 w-4 '
-  if (props.isOpen) {
-    tw += 'before:border-gray-200 before:content("▼") '
-  } else {
-    tw += 'before:border-gray-200 before:content("▲") '
-  }
-
+  const { isOpen, ...rest } = props
+  const tw = 'absolute right-2 top-2 block h-4 w-4 text-gray-400 '
+  const content = isOpen ? '▲' : '▼' //とりあえず
   return (
     <div className={tw} {...rest}>
-      {children}
+      {content}
     </div>
   )
 }
@@ -76,7 +105,7 @@ const DropdownMenu = (props: React.ComponentPropsWithRef<'div'>) => {
 //ドロップメニューの選択肢
 const DropdownOption = (props: React.ComponentPropsWithRef<'div'>) => {
   const { children, ...rest } = props
-  const tw = 'px-2 py-3 hover:bg-gray-500 '
+  const tw = 'px-2 py-3 hover:bg-gray-200 '
 
   return (
     <div className={tw} {...rest}>
@@ -86,7 +115,7 @@ const DropdownOption = (props: React.ComponentPropsWithRef<'div'>) => {
 }
 
 interface DropdownItemProps {
-  item: DropdownItemIF
+  item: DropdownItem
 }
 
 /** ドロップダウンの選択した要素 */
@@ -102,19 +131,20 @@ const DropdownItem = (props: DropdownItemProps) => {
   )
 }
 
-export interface DropdownItemIF {
+//QUESTION なんで↑と同名？
+export interface DropdownItem {
   value: string | number | null
   label?: string
 }
 
 interface DropdownProps {
   /** ドロップダウンの選択肢 */
-  options: DropdownItemIF[]
+  options: DropdownItem[]
 
   /** ドロップダウンの値 */
   value?: string | number
 
-  /** <input /> のname属性 */
+  /** <input />のname属性 */
   name?: string
 
   /** プレースホルダー */
@@ -124,7 +154,7 @@ interface DropdownProps {
   hasError?: boolean
 
   /** 値が変化した時のイベントハンドラ */
-  onChange?: (selected?: DropdownItemIF) => void
+  onChange?: (selected?: DropdownItem) => void
 }
 
 /** ドロップダウン */
@@ -161,7 +191,7 @@ const Dropdown = (props: DropdownProps) => {
   //ドロップダウンから選択した時
   const handleSelectValue = (
     e: React.FormEvent<HTMLDivElement>,
-    item: DropdownItemIF,
+    item: DropdownItem,
   ) => {
     e.stopPropagation()
 
@@ -207,7 +237,7 @@ const Dropdown = (props: DropdownProps) => {
           value={selectedItem?.value ?? ''}
           onChange={() => onChange && onChange(selectedItem)}
         />
-        <DropdownArrow isOpen={isOpen} />
+        <DropdownArrow id="Arrow" isOpen={isOpen} />
       </DropdownControl>
       {/* ドロップダウンを表示 */}
       {isOpen && (
