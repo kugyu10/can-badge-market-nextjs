@@ -1,10 +1,8 @@
 import Link from 'next/link'
-import styled from 'styled-components'
 import { GitHubIcon } from 'components/atoms/IconButton'
 import Text from 'components/atoms/Text'
 import Box from 'components/layout/Box'
 import Flex from 'components/layout/Box'
-import React, { Children } from 'react'
 
 const Anchor = (props: React.ComponentPropsWithRef<'span'>) => {
   const { children, ...rest } = props

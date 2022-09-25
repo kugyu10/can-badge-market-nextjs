@@ -5,11 +5,11 @@ export type GridProps = {
 
 /** Gridコンポーネント */
 const Grid = (props: React.ComponentPropsWithRef<'div'> & GridProps) => {
-  const { tw, children, ...rest } = props
-  const twGrid = 'grid ' + tw ?? ''
+  const { className, children, ...rest } = props
+  const tw = 'grid ' + className ?? ''
 
   return (
-    <div className={twGrid} {...rest}>
+    <div className={tw} {...rest}>
       {children}
     </div>
   )
