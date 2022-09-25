@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react'
 import UserProfile from './index'
 
 export default {
-  title: 'Oranisms/UserProfile',
+  title: 'Organisms/UserProfile',
   argTypes: {
     variant: {
       options: ['normal', 'small'],
@@ -11,28 +11,6 @@ export default {
       description: 'バリアント(表示スタイル)',
       table: {
         type: { summary: 'normal | small' },
-        defaultValue: { summary: 'normal' },
-      },
-    },
-    username: {
-      control: { type: 'text' }
-    },
-  },
-} as ComponentMeta<typeof UserProfile>
-
-import { ComponentMeta, ComponentStory } from '@storybook/react'
-import UserProfile from './index'
-
-export default {
-  title: 'Organisms/UserProfile',
-  argTypes: {
-    variant: {
-      options: ['normal', 'small'],
-      control: { type: 'radio' },
-      defaultValue: 'normal',
-      description: 'バリアント(表示スタイル)'
-      table: {
-        type: { summary: 'normal' | 'small' },
         defaultValue: { summary: 'normal' },
       },
     },
