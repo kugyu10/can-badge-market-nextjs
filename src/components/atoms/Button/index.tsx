@@ -15,37 +15,36 @@ const variants = {
   danger: ['text-white', 'bg-red-600', 'border-0', 'hover:bg-red-800'],
 }
 
-const Button = (button: ButtonProps) => {
+const Button = (props: React.ComponentPropsWithRef<'button'> & ButtonProps) => {
+  const { className, children, variant, onClick, ...rest } = props
   //ButtonType
-  const buttonType = 'button' //FIXME とりあえずbutton固定、submitやreset対応必要
-  let buttonClasses = 'rounded px-4 py-2 m-2 '
+  const buttonType = 'button' //TODO とりあえずbutton固定、submitやreset対応必要
+  let tw = className
+    ? className + 'rounded px-4 py-2 m-2 '
+    : 'rounded px-4 py-2 m-2 '
 
   //バリアントのスタイルの適用
-  if (button.variant && variants[button.variant]) {
-    buttonClasses += variants[button.variant].join(' ') + ' '
+  if (variant && variants[variant]) {
+    tw += variants[variant].join(' ') + ' '
   }
   //Disable
-  if (button.disabled) {
-    buttonClasses += 'text-white bg-gray-600 hover:bg-gray-800 '
+  if (props.disabled) {
+    tw += 'text-white bg-gray-600 hover:bg-gray-800 '
   }
 
   //横幅
-  if (button.width) {
-    buttonClasses += `w-${button.width} `
+  if (props.width) {
+    tw += `w-${props.width} `
   }
 
   //縦幅
-  if (button.height) {
-    buttonClasses += `h-${button.height} `
+  if (props.height) {
+    tw += `h-${props.height} `
   }
 
   return (
-    <button
-      type={buttonType}
-      className={buttonClasses}
-      onClick={button.onClick}
-    >
-      {button.children}
+    <button type={buttonType} className={tw} onClick={onClick} {...rest}>
+      {children}
     </button>
   )
 }

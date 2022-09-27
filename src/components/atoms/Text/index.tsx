@@ -27,9 +27,9 @@ const variants = {
   extraLarge: ['text-3xl'],
 }
 
-const Text = (props: TextProps) => {
-  const { children, ...rest } = props
-  let tw = 'm-1 p-1 font-sans ' //デフォルト、テキトー
+const Text = (props: React.ComponentPropsWithRef<'span'> & TextProps) => {
+  const { children, className, ...rest } = props
+  let tw = className + 'm-1 p-1 font-sans ' //デフォルト、テキトー
 
   if (props.variant && variants[props.variant]) {
     tw += variants[props.variant].join(' ') + ' '
@@ -58,7 +58,7 @@ const Text = (props: TextProps) => {
   }
 
   return (
-    <span className={tw} {...rest}>
+    <span className={tw} onClick={props.onClick} {...rest}>
       {children}
     </span>
   )
