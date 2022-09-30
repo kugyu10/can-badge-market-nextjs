@@ -24,36 +24,31 @@ const HeaderRoot = (props: React.ComponentPropsWithRef<'div'>) => {
 
 //ナビゲーション
 const Nav = (props: React.ComponentPropsWithRef<'div'>) => {
-  const { className, children, ...rest } = props
+  const { children, ...rest } = props
 
-  return (
-    <Flex className={className} {...rest}>
-      {children}
-    </Flex>
-  )
+  return <Flex {...rest}>{children}</Flex>
 }
 
 //ナビゲーションのリンク
 const NavLink = (props: React.ComponentPropsWithRef<'span'>) => {
   const { className, children, ...rest } = props
-  const tw = className + ' mr-1 last:mr-0 '
+  const tw = 'mr-1 last:mr-0 ' + className
   return (
-    <span className={tw} {...rest}>
+    <nav className={tw} {...rest}>
       {children}
-    </span>
+    </nav>
   )
 }
 
-
 //アンカーリンク
-const Anchor = (props: React.ComponentPropsWithRef<'span'>) => {
+const Anchor = (props: React.ComponentPropsWithRef<'a'>) => {
   const { className, children, ...rest } = props
-  const tw = className + ' cursor-pointer hover:underline '
+  const tw = 'cursor-pointer hover:underline ' + className
 
   return (
-    <Text className={tw} {...rest}>
+    <a className={tw} {...rest}>
       {children}
-    </Text>
+    </a>
   )
 }
 
@@ -65,32 +60,32 @@ const Header = () => {
   return (
     <HeaderRoot>
       <Flex className="pl-1 pr-1 justify-between ">
-        <Nav as="nav" className="h-14 items-center ">
+        <Nav className="h-14 items-center ">
           <NavLink>
             <Link href="/" passHref>
-              <Anchor as="a">
+              <Anchor>
                 <AppLogo />
               </Anchor>
             </Link>
           </NavLink>
           <NavLink>
             <Link href="/" passHref>
-              <Anchor as="a">すべて</Anchor>
+              <Anchor>すべて</Anchor>
             </Link>
           </NavLink>
           <NavLink>
             <Link href="/" passHref>
-              <Anchor as="a">アニメ</Anchor>
+              <Anchor>アニメ</Anchor>
             </Link>
           </NavLink>
           <NavLink>
             <Link href="/" passHref>
-              <Anchor as="a">キャラクター</Anchor>
+              <Anchor>キャラクター</Anchor>
             </Link>
           </NavLink>
           <NavLink>
             <Link href="/" passHref>
-              <Anchor as="a">その他</Anchor>
+              <Anchor>その他</Anchor>
             </Link>
           </NavLink>
 
@@ -100,7 +95,7 @@ const Header = () => {
               if (authUser) {
                 return (
                   <Link href={`/users/${authUser.id}`} passHref>
-                    <Anchor as="a">
+                    <Anchor>
                       <ShapeImage
                         shape="circle"
                         src={authUser.profileImageUrl}
@@ -118,7 +113,7 @@ const Header = () => {
                 //サインインしてない場合はアイコンを表示
                 return (
                   <Link href="/signin" passHref>
-                    <Anchor as="a">
+                    <Anchor>
                       <PersonIcon twSize={6} />
                     </Anchor>
                   </Link>
@@ -128,7 +123,7 @@ const Header = () => {
           </NavLink>
           <NavLink>
             <Link href="/sell" passHref>
-              <Button as="a">出品</Button>
+              <Button>出品</Button>
             </Link>
           </NavLink>
         </Nav>

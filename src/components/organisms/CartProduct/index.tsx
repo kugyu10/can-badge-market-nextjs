@@ -48,9 +48,9 @@ const CartProduct = ({
   onRemoveButtonClick,
 }: CartProductProps) => {
   return (
-    <Flex tw="justify-between ">
+    <Flex className="justify-between ">
       <Flex>
-        <Box width="120px" height="120px">
+        <Box className=" w-28 h-28">
           <Link href={`/products/${id}`} passHref>
             <a>
               <Image
@@ -64,32 +64,27 @@ const CartProduct = ({
             </a>
           </Link>
         </Box>
-        <Box className="p-1 ">
-          <Flex tw="column justify-between " height="100%">
+        <Box className=" p-1 ">
+          <Flex className="flex-col justify-between h-full ">
             <Box>
-              <Text
-                className="text-bold mt-0 mb-1 "
-                variant="mediumLarge"
-                as="p"
-              >
+              <Text className="text-bold mt-0 mb-1 " variant="mediumLarge">
                 {title}
               </Text>
-              <Text className="m-0 " as="p">
-                {price}円
-              </Text>
+              <Text className="m-0 ">{price}円</Text>
             </Box>
 
-            <Flex tw="mt-1 ">
+            <Flex className="mt-1 ">
               {/* 購入ボタン TODO onClickイベント */}
               <Button
-                className="w-24 "
+                className=" w-24 "
                 onClick={() => onBuyButtonClick && onBuyButtonClick(id)}
+                variant="primary"
               >
                 購入
               </Button>
               {/* 削除ボタン */}
               <Button
-                className="ml-1 block md:hidden w-24 "
+                className=" ml-1 block md:hidden w-24 "
                 onClick={() => onRemoveButtonClick && onRemoveButtonClick(id)}
                 variant="danger"
               >
