@@ -4,7 +4,7 @@ import Button from './index'
 export default {
   title: 'Atoms/Button',
   argTypes: {
-    varoamt: {
+    variant: {
       options: ['primary', 'secondary'],
       control: { type: 'radio' },
       defaultValue: 'primary',

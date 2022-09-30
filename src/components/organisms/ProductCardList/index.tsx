@@ -9,11 +9,10 @@ interface ProductCardListProps {
 }
 
 /** 商品カードリスト */
-
 const ProductCardList = ({
-  numberPerRow = 4,
-  numberPerRowForMobile = 2,
   children,
 }: React.PropsWithChildren<ProductCardListProps>) => (
   <Grid className=" gap-4 grid-cols-2 md:grid-cols-4">{children}</Grid>
 )
+
+export default ProductCardList

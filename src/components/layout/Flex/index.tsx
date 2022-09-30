@@ -1,15 +1,10 @@
-export type FlexProps = {
-  /** Tailwindでのスタイル items-center, justify-center, grow などを指定 */
-  tw?: string
-}
-
 /** Flexコンポーネント */
-const Flex = (props: React.ComponentPropsWithRef<'div'> & FlexProps) => {
-  const { tw, children, ...rest } = props
-  const twFlex = 'flex ' + tw ?? ''
+const Flex = (props: React.ComponentPropsWithRef<'div'>) => {
+  const { className, children, ...rest } = props
+  const tw = 'flex ' + className ?? ''
 
   return (
-    <div className={twFlex} {...rest}>
+    <div className={tw} {...rest}>
       {children}
     </div>
   )

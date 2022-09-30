@@ -15,7 +15,7 @@ export default {
       control: { type: 'text' },
       description: '商品タイトル',
       table: {
-        type: { summary: 'string' }
+        type: { summary: 'string' },
       },
     },
     imageUrl: {
