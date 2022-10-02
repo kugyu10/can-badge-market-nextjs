@@ -44,23 +44,20 @@ const UserProfile = ({
           width={profileImageSize}
         />
       </Box>
-      <Box className="p-0.5">
-        <Flex className="h-full column justify-between">
-          <Box>
-            <Text
-              as="p"
-              variant="mediumLarge"
-              className="mt-0 mb-0.5 font-bold"
-            >
-              {username}
-            </Text>
-
-            <Text as="p" className="mb-0.5 mt-0">
-              {numberOfProducts}点 出品済
-            </Text>
+      <Box className="p-0.5 ">
+        <Flex className="h-full flex-col justify-between ">
+          <Box className="my-auto ">
+            <p>
+              <Text variant="mediumLarge" className="mt-0 mb-0.5 font-bold ">
+                {username}
+              </Text>
+            </p>
+            <p>
+              <Text className="mb-0.5 mt-0 ">{numberOfProducts}点 出品済</Text>
+            </p>
 
             {variant === 'normal' && (
-              <Text className="mt-0">{description}</Text>
+              <Text className="mt-0 ">{description}</Text>
             )}
           </Box>
         </Flex>

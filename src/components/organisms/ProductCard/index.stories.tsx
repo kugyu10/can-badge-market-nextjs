@@ -61,7 +61,7 @@ Listing.args = {
 //Smallカード
 export const Small = Template.bind({})
 Small.args = {
-  variant: 'listing',
+  variant: 'small',
   title: 'テストバッジ',
   imageUrl: '/images/sample/1.jpg',
   price: 500,
@@ -70,7 +70,7 @@ Small.args = {
 //Detailカード
 export const Detail = Template.bind({})
 Detail.args = {
-  variant: 'listing',
+  variant: 'detail',
   title: 'テストバッジ',
   imageUrl: '/images/sample/1.jpg',
   price: 500,

@@ -70,7 +70,9 @@ const CartProduct = ({
               <Text className="text-bold mt-0 mb-1 " variant="mediumLarge">
                 {title}
               </Text>
-              <Text className="m-0 ">{price}円</Text>
+              <p>
+                <Text>{price}円</Text>
+              </p>
             </Box>
 
             <Flex className="mt-1 ">

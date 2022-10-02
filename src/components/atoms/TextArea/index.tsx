@@ -9,7 +9,7 @@ export interface TextAreaProps
   maxRows?: number
 
   /** バリデーションエラーフラグ */
-  varidated?: boolean
+  hasError?: boolean
 }
 
 /** Atoms/TextArea */
@@ -19,7 +19,7 @@ const TextArea = (props: TextAreaProps) => {
     minRows = 5,
     maxRows = 10,
     children,
-    varidated,
+    hasError,
     onChange,
     ...rest
   } = props
@@ -61,7 +61,7 @@ const TextArea = (props: TextAreaProps) => {
   let textAreaClasses = 'border rounded-sm w-full text-base p-3 pl-2 '
 
   //エラーがえれば赤くする
-  if (!varidated) {
+  if (hasError) {
     textAreaClasses += 'border-red-600 '
   }
 

@@ -61,4 +61,4 @@ export const Normal = Template.bind({})
 
 //赤枠のテキストエリア
 export const Error = Template.bind({})
-Error.args = { varidated: false }
+Error.args = { hasError: true }

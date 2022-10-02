@@ -7,19 +7,19 @@ export type InputProps = React.ComponentPropsWithRef<'input'> & {
  * @params hasBorder?
  * @params hasError?
  */
-const Input = (input: InputProps) => {
-  //TODO hasBorderはデフォルト対応
+const Input = (props: InputProps) => {
+  const hasBorder = props.hasBorder ?? true
 
-  let inputClasses = 'p-3 pl-2 w-full h-9 text-base '
+  let tw = 'p-3 pl-2 w-full h-9 text-base '
 
-  if (input.hasBorder) {
-    inputClasses += 'border rounded '
+  if (hasBorder) {
+    tw += 'border rounded '
   }
-  if (input.hasError) {
-    inputClasses += 'border-red-600 '
+  if (props.hasError) {
+    tw += 'border-red-600 '
   }
 
-  return <input type="text" className={inputClasses} />
+  return <input type="text" className={tw} />
 }
 
 export default Input

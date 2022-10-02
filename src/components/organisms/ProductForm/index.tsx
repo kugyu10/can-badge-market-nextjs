@@ -40,7 +40,7 @@ const ProductForm = ({ onProductSave }: ProductFormProps) => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Box className="mb-1 ">
         <Box className="mb-0.5">
-          <Text className="font-bold " as="label" variant="mediumLarge">
+          <Text className="font-bold " variant="mediumLarge">
             商品の写真
           </Text>
         </Box>
@@ -66,19 +66,18 @@ const ProductForm = ({ onProductSave }: ProductFormProps) => {
 
       <Box className="mb-1 ">
         <Box className="mb-0.5 ">
-          <Text as="label" variant="mediumLarge" className="font-bold ">
+          <Text variant="mediumLarge" className="font-bold ">
             商品情報
           </Text>
         </Box>
         <Box className="mb-0.5 ">
-          <Text as="label" variant="medium">
-            タイトル
-          </Text>
+          <Text variant="medium">タイトル</Text>
           <Input
             {...register('title', { required: true })}
             name="title"
             type="text"
             placeholder="出品のタイトル"
+            hasBorder={true}
             hasError={!!errors.title}
           />
           {errors.title && (
@@ -88,9 +87,7 @@ const ProductForm = ({ onProductSave }: ProductFormProps) => {
           )}
         </Box>
         <Box className="mb-0.5 ">
-          <Text as="label" variant="medium">
-            概要
-          </Text>
+          <Text variant="medium">概要</Text>
           <Controller
             control={control}
             name="description"
@@ -112,9 +109,7 @@ const ProductForm = ({ onProductSave }: ProductFormProps) => {
           )}
         </Box>
         <Box className="mb-0.5 ">
-          <Text as="label" variant="medium">
-            カテゴリ
-          </Text>
+          <Text variant="medium">カテゴリ</Text>
           <Controller
             control={control}
             name="category"
@@ -141,9 +136,7 @@ const ProductForm = ({ onProductSave }: ProductFormProps) => {
           )}
         </Box>
         <Box className="mb-0.5 ">
-          <Text as="label" variant="medium">
-            商品の状態
-          </Text>
+          <Text variant="medium">商品の状態</Text>
           <Controller
             control={control}
             name="condition"
@@ -171,14 +164,13 @@ const ProductForm = ({ onProductSave }: ProductFormProps) => {
           )}
         </Box>
         <Box className="mb-0.5 ">
-          <Text as="label" variant="medium">
-            価格（円）
-          </Text>
+          <Text variant="medium">価格（円）</Text>
           <Input
             {...register('price', { required: true })}
             name="price"
             type="number"
             placeholder="100"
+            hasBorder={true}
             hasError={!!errors.price}
           />
           {errors.price && (
@@ -188,7 +180,7 @@ const ProductForm = ({ onProductSave }: ProductFormProps) => {
           )}
         </Box>
       </Box>
-      <Button className="w-full" type="submit">
+      <Button variant="primary" className="w-full" type="submit">
         出品
       </Button>
     </form>

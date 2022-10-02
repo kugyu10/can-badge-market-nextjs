@@ -1,20 +1,19 @@
 import Image, { ImageProps } from 'next/image'
 
 type ScaleImageProps = Omit<ImageProps, 'quality'> & {
-  /** ex)w-80 */
+  /** size of pixel */
   containerWidth?: string
 
-  /** ex)h-80 */
+  /** size of pixel */
   containerHeight?: string
 }
 
 /** スケールイメージ */
 const ScaleImage = (scaleImage: ScaleImageProps) => {
-  let containerStyle =
-    scaleImage.containerWidth ?? `${scaleImage.width}` ?? 'w-80'
+  const widthNum = scaleImage.containerWidth ?? `${scaleImage.width}` ?? '320'
 
-  containerStyle +=
-    ' ' + (scaleImage.containerHeight ?? `${scaleImage.height}` ?? 'h-80')
+  const heightNum =
+    scaleImage.containerHeight ?? `${scaleImage.height}` ?? '320'
 
   const imageAlt = scaleImage.alt ?? 'Product Image'
 
@@ -25,7 +24,7 @@ const ScaleImage = (scaleImage: ScaleImageProps) => {
   const imageWidth = scaleImage.width ?? '320px'
 
   return (
-    <div className={containerStyle}>
+    <div style={{ width: widthNum + 'px', height: heightNum + 'px' }}>
       <Image
         quality="85"
         alt={imageAlt}

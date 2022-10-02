@@ -34,7 +34,7 @@ const ProductCardImageContainer = (
   props: React.ComponentPropsWithRef<'div'>,
 ) => {
   const { className, children, ...rest } = props
-  const tw = className + ' z-49 '
+  const tw = className ? className + ' z-49 ' : 'z-49 '
 
   return (
     <div className={tw} {...rest}>
@@ -45,7 +45,9 @@ const ProductCardImageContainer = (
 
 const ProductCardInfo = (props: React.ComponentPropsWithRef<'div'>) => {
   const { className, children, ...rest } = props
-  const tw = className + ' absolute z-50 top-0 left-0 '
+  const tw = className
+    ? className + ' absolute z-50 top-0 left-0 '
+    : ' absolute z-50 top-0 left-0 '
 
   return (
     <div className={tw} {...rest}>
@@ -81,10 +83,10 @@ const ProductCard = ({
       {variant !== 'small' && (
         <ProductCardInfo>
           <Box>
-            <h2 className="text-sm md:text-base tracking-normal md:tracking-wide bg-white m-0 px-0.5 py-0 ">
+            <h2 className="text-base md:text-lg tracking-normal md:tracking-wide bg-white m-0 px-0.5 py-0 ">
               {title}
             </h2>
-            <span className="font-bold inline-block text-xs md:text-sm tracking-normal md:tracking-wide m-0 p-0.5">
+            <span className="font-bold inline-block text-xs md:text-sm tracking-normal md:tracking-wide bg-white m-0 p-0.5">
               {price}円
             </span>
           </Box>
