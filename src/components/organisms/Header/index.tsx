@@ -9,7 +9,7 @@ import {
 } from 'components/atoms/IconButton'
 import ShapeImage from 'components/atoms/ShapeImage'
 import Spinner from 'components/atoms/Spinner'
-import Text from 'components/atoms/Text'
+import Box from 'components/layout/Box'
 import Flex from 'components/layout/Flex'
 import BadgeIconButton from 'components/molecules/BadgeIconButton'
 import { useAuthContext } from 'contexts/AuthContext'
@@ -31,10 +31,10 @@ const Nav = (props: React.ComponentPropsWithRef<'div'>) => {
 
 //ナビゲーションのリンク
 const NavLink = (props: React.ComponentPropsWithRef<'span'>) => {
-  const { className, children, ...rest } = props
-  const tw = 'mr-1 last:mr-0 ' + className
+  const { children, ...rest } = props
+
   return (
-    <nav className={tw} {...rest}>
+    <nav className="ml-4 first:ml-0 " {...rest}>
       {children}
     </nav>
   )
@@ -42,11 +42,10 @@ const NavLink = (props: React.ComponentPropsWithRef<'span'>) => {
 
 //アンカーリンク
 const Anchor = (props: React.ComponentPropsWithRef<'a'>) => {
-  const { className, children, ...rest } = props
-  const tw = 'cursor-pointer hover:underline ' + className
+  const { children, ...rest } = props
 
   return (
-    <a className={tw} {...rest}>
+    <a className="cursor-pointer hover:underline " {...rest}>
       {children}
     </a>
   )
@@ -69,26 +68,56 @@ const Header = () => {
             </Link>
           </NavLink>
           <NavLink>
-            <Link href="/" passHref>
-              <Anchor>すべて</Anchor>
-            </Link>
+            <Box className="hidden md:block">
+              <Link href="/" passHref>
+                <Anchor>すべて</Anchor>
+              </Link>
+            </Box>
           </NavLink>
           <NavLink>
-            <Link href="/" passHref>
-              <Anchor>アニメ</Anchor>
-            </Link>
+            <Box className="hidden md:block">
+              <Link href="/" passHref>
+                <Anchor>アニメ</Anchor>
+              </Link>
+            </Box>
           </NavLink>
           <NavLink>
-            <Link href="/" passHref>
-              <Anchor>キャラクター</Anchor>
-            </Link>
+            <Box className="hidden md:block">
+              <Link href="/" passHref>
+                <Anchor>キャラクター</Anchor>
+              </Link>
+            </Box>
           </NavLink>
           <NavLink>
-            <Link href="/" passHref>
-              <Anchor>その他</Anchor>
+            <Box className="hidden md:block">
+              <Link href="/" passHref>
+                <Anchor>その他</Anchor>
+              </Link>
+            </Box>
+          </NavLink>
+        </Nav>
+        <Nav className="h-14 items-center ">
+          <NavLink>
+            <Box className="block md:hidden">
+              <Link href="/search" passHref>
+                <Anchor>
+                  <SearchIcon />
+                </Anchor>
+              </Link>
+            </Box>
+          </NavLink>
+          <NavLink>
+            <Link href="/cart" passHref>
+              <Anchor>
+                <BadgeIconButton
+                  icon={<ShoppingCartIcon twSize={6} />}
+                  twSize={6}
+                  badgeContent={cart.length === 0 ? undefined : cart.length}
+                  badgeBackgroundColor="primary"
+                />
+              </Anchor>
             </Link>
           </NavLink>
-
           <NavLink>
             {(() => {
               //認証していたらアイコンを表示
@@ -123,7 +152,7 @@ const Header = () => {
           </NavLink>
           <NavLink>
             <Link href="/sell" passHref>
-              <Button>出品</Button>
+              <Button variant="primary">出品</Button>
             </Link>
           </NavLink>
         </Nav>

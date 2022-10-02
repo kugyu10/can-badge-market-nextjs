@@ -7,7 +7,7 @@ import {
   useShoppingCartContext,
 } from 'contexts/ShoppingCartContext'
 
-export default { title: 'organizems/Header' } as ComponentMeta<typeof Header>
+export default { title: 'organisms/Header' } as ComponentMeta<typeof Header>
 
 export const NoLogin = () => <Header />
 

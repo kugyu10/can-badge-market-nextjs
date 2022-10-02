@@ -35,6 +35,7 @@ const SigninForm = ({ onSignin }: SigninFormProps) => {
           name="username"
           type="text"
           placeholder="ユーザー名"
+          hasBorder={true}
           hasError={!!errors.username}
         />
         {errors.username && (
@@ -49,15 +50,16 @@ const SigninForm = ({ onSignin }: SigninFormProps) => {
           name="password"
           type="password"
           placeholder="パスワード"
+          hasBorder={true}
           hasError={!!errors.password}
         />
         {errors.password && (
-          <Text variant="small" className="pl-0.5 text-red-600">
+          <Text variant="small" className="pl-0.5 text-red-600 ">
             パスワードは必須です
           </Text>
         )}
       </Box>
-      <Button className="w-full" type="submit">
+      <Button variant="primary" className="w-full" type="submit">
         サインイン
       </Button>
     </form>

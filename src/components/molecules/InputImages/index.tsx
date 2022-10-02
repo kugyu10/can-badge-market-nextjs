@@ -1,13 +1,13 @@
 import React, { useCallback, useMemo } from 'react'
-import Flex, { FlexProps } from 'components/layout/Flex'
+import Flex from 'components/layout/Flex'
 import Dropzone from 'components/molecules/Dropzone'
 import ImagePreview from 'components/molecules/ImagePreview'
 
-const InputImagesContainer = (
-  props: React.ComponentPropsWithRef<'div'> & FlexProps,
-) => {
-  const tw = 'flex-col mt-2 first:mt-0 ' + props.tw ?? ''
-  return <Flex tw={tw}>{props.children}</Flex>
+const InputImagesContainer = (props: React.ComponentPropsWithRef<'div'>) => {
+  const { children } = props
+
+  const tw = 'flex-col mt-2 first:mt-0 '
+  return <Flex className={tw}>{children}</Flex>
 }
 
 export type FileData = {
